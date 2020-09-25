@@ -29,9 +29,10 @@ export const paginate = ({
 const usePagination = ({ items, size = 10 }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [displayItems, setDisplayItems] = useState([])
-    const [totalPages] = useState(Math.ceil(items.length / size))
+    const [totalPages, setTotalPages] = useState(Math.ceil(items.length / size))
 
     useEffect(() => {
+        setTotalPages(Math.ceil(items.length/size))
         const { start, end } = paginate({ total: items.length, current: currentPage, size })
         const display = items.slice(start, end)
 
