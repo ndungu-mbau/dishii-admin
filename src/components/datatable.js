@@ -1,7 +1,9 @@
 import React from "react";
+import usePagination from "../utils/paginate"
 
 const DataTable = props => {
   if (!props.headers || !props.data) return null;
+  const { current, display, pages, next, previous, first, last, set } = usePagination({ items: props.data, size: props.pagination })
   return (
     <table
       className={`table table-responsive ${props.className}`}
@@ -15,7 +17,7 @@ const DataTable = props => {
         </tr>
       </thead>
       <tbody>
-        {props.data.map(row => {
+        {display.map(row => {
           return (props.children(row))
         })}
       </tbody>
