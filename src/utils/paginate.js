@@ -36,7 +36,7 @@ const usePagination = ({ items, size = 10 }) => {
         const display = items.slice(start, end)
 
         setDisplayItems(display)
-    }, [currentPage])
+    }, [currentPage, items, size])
 
     return {
         current: currentPage,
