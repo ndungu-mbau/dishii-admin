@@ -1,76 +1,137 @@
-import React from "react"
+import React from 'react'
 
-const NavBar = props => (
-    <nav class="pcoded-navbar">
-        <div class="navbar-wrapper">
-            <div class="navbar-brand header-logo">
-                <a href="index.html" class="b-brand">
-                    <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
-                    </div>
-                    <span class="b-title">Datta Able</span>
-                </a>
-                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
-            </div>
-            <div class="slimScrollDiv" style={{position: "relative", overflow: "hidden", width: "100%", height: "calc(100vh - 70px)"}}>
-                <div class="navbar-content scroll-div" style={{overflow: "hidden", width: "100%", height: "calc(100vh - 70px)"}}>
-                    <ul class="nav pcoded-inner-navbar">
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>Navigation</label>
-                        </li>
-                        <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
-                            <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
-                        </li>
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>UI Element</label>
-                        </li>
-                        <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                            <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Components</span></a>
-                            <ul class="pcoded-submenu">
-                                <li class=""><a href="bc_button.html" class="">Button</a></li>
-                                <li class=""><a href="bc_badges.html" class="">Badges</a></li>
-                                <li class=""><a href="bc_breadcrumb-pagination.html" class="">Breadcrumb &amp; paggination</a></li>
-                                <li class=""><a href="bc_collapse.html" class="">Collapse</a></li>
-                                <li class=""><a href="bc_tabs.html" class="">Tabs &amp; pills</a></li>
-                                <li class=""><a href="bc_typography.html" class="">Typography</a></li>
-
-
-                                <li class=""><a href="icon-feather.html" class="">Feather<span class="pcoded-badge label label-danger">NEW</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>Forms &amp; table</label>
-                        </li>
-                        <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item">
-                            <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Form elements</span></a>
-                        </li>
-                        <li data-username="Table bootstrap datatable footable" class="nav-item">
-                            <a href="tbl_bootstrap.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Table</span></a>
-                        </li>
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>Chart &amp; Maps</label>
-                        </li>
-                        <li data-username="Charts Morris" class="nav-item"><a href="chart-morris.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a></li>
-                        <li data-username="Maps Google" class="nav-item"><a href="map-google.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">Maps</span></a></li>
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>Pages</label>
-                        </li>
-                        <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe" class="nav-item pcoded-hasmenu">
-                            <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
-                            <ul class="pcoded-submenu">
-                                <li class=""><a href="auth-signup.html" class="" target="_blank">Sign up</a></li>
-                                <li class=""><a href="auth-signin.html" class="" target="_blank">Sign in</a></li>
-                            </ul>
-                        </li>
-                        <li data-username="Sample Page" class="nav-item"><a href="sample-page.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>
-                        <li data-username="Disabled Menu" class="nav-item disabled"><a href="javascript:" class="nav-link"><span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Disabled menu</span></a></li>
-                    </ul>
-                </div>
-            <div class="slimScrollBar" style={{background: "rgba(0, 0, 0, 0.5)", width: "5px", position: "absolute", top: "0px", opacity: "0.4", display: "none", borderRadius: "7px", zIndex: 99, right: "1px", height: "411.503px"}}></div>
-            <div class="slimScrollRail" style={{width: "5px", height: "100%", position: "absolute", top: "0px", display: "none", borderRadius: "7px", background: "rgb(51, 51, 51)", opacity: "0.2", zIndex: 90, right: "1px"}}></div>
-            </div>
-        </div>
+const Wrapper = ({ children }) => (
+  <>
+    <nav class='navbar navbar-dark navbar-theme-primary px-4 col-12 d-md-none'>
+      <a class='navbar-brand mr-lg-5' href='../../index.html'>
+        <img
+          class='navbar-brand-dark'
+          src='../../assets/img/brand/light.svg'
+          alt='Volt logo'
+        />{' '}
+        <img
+          class='navbar-brand-light'
+          src='../../assets/img/brand/dark.svg'
+          alt='Volt logo'
+        />
+      </a>
+      <div class='d-flex align-items-center'>
+        <button
+          class='navbar-toggler d-md-none collapsed'
+          type='button'
+          data-toggle='collapse'
+          data-target='#sidebarMenu'
+          aria-controls='sidebarMenu'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
+          <span class='navbar-toggler-icon'></span>
+        </button>
+      </div>
     </nav>
+    <div class='container-fluid bg-soft'>
+      <div class='row'>
+        <div class='col-12'>{children}</div>
+      </div>
+    </div>
+  </>
 )
+
+const NavBar = props => {
+  return (
+    <Wrapper>
+      <nav
+        id='sidebarMenu'
+        class='sidebar d-md-block bg-primary text-white collapse'
+        data-simplebar
+      >
+        <div class='sidebar-inner px-4 pt-3'>
+          <div class='user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4'>
+            <div class='d-flex align-items-center'>
+              <div class='user-avatar lg-avatar mr-4'>
+                <img
+                  src='../../assets/img/team/profile-picture-3.jpg'
+                  class='card-img-top rounded-circle border-white'
+                  alt='Bonnie Green'
+                />
+              </div>
+              <div class='d-block'>
+                <h2 class='h6'>Hi, Jane</h2>
+                <a
+                  href='../../pages/examples/sign-in.html'
+                  class='btn btn-secondary text-dark btn-xs'
+                >
+                  <span class='mr-2'>
+                    <span class='fas fa-sign-out-alt'></span>
+                  </span>
+                  Sign Out
+                </a>
+              </div>
+            </div>
+            <div class='collapse-close d-md-none'>
+              <a
+                href='#sidebarMenu'
+                class='fas fa-times'
+                data-toggle='collapse'
+                data-target='#sidebarMenu'
+                aria-controls='sidebarMenu'
+                aria-expanded='true'
+                aria-label='Toggle navigation'
+              ></a>
+            </div>
+          </div>
+          <ul class='nav flex-column'>
+            {props.routes.map(({ title, icon, link }) => {
+              return (
+                <li class='nav-item'>
+                  <a href={link} class='nav-link'>
+                    <span class='sidebar-icon'>
+                      <span class={`fas fa-${icon}`}></span>
+                    </span>
+                    <span>{title}</span>
+                  </a>
+                </li>
+              )
+            })}
+            <li class='nav-item'>
+              <span
+                class='nav-link  collapsed  d-flex justify-content-between align-items-center'
+                data-toggle='collapse'
+                data-target='#submenu-app'
+              >
+                <span>
+                  <span class='sidebar-icon'>
+                    <span class='fas fa-table'></span>
+                  </span>
+                  Tables
+                </span>
+                <span class='link-arrow'>
+                  <span class='fas fa-chevron-right'></span>
+                </span>
+              </span>
+              <div
+                class='multi-level collapse '
+                role='list'
+                id='submenu-app'
+                aria-expanded='false'
+              >
+                <ul class='flex-column nav'>
+                  <li class='nav-item '>
+                    <a
+                      class='nav-link'
+                      href='../../pages/tables/bootstrap-tables.html'
+                    >
+                      <span>Bootstrap Tables</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </Wrapper>
+  )
+}
 
 export default NavBar
