@@ -81,52 +81,65 @@ const NavBar = props => {
             </div>
           </div>
           <ul class='nav flex-column'>
-            {props.routes.map(({ title, icon, link }) => {
-              return (
-                <li class='nav-item'>
-                  <a href={link} class='nav-link'>
-                    <span class='sidebar-icon'>
-                      <span class={`fas fa-${icon}`}></span>
-                    </span>
-                    <span>{title}</span>
-                  </a>
-                </li>
-              )
-            })}
-            <li class='nav-item'>
-              <span
-                class='nav-link  collapsed  d-flex justify-content-between align-items-center'
-                data-toggle='collapse'
-                data-target='#submenu-app'
-              >
-                <span>
-                  <span class='sidebar-icon'>
-                    <span class='fas fa-table'></span>
-                  </span>
-                  Tables
-                </span>
-                <span class='link-arrow'>
-                  <span class='fas fa-chevron-right'></span>
-                </span>
-              </span>
-              <div
-                class='multi-level collapse '
-                role='list'
-                id='submenu-app'
-                aria-expanded='false'
-              >
-                <ul class='flex-column nav'>
-                  <li class='nav-item '>
-                    <a
-                      class='nav-link'
-                      href='../../pages/tables/bootstrap-tables.html'
-                    >
-                      <span>Bootstrap Tables</span>
+            {props.routes.map(
+              ({ title, icon, link, children = undefined, id = undefined }) => {
+                if (children) {
+                  return (
+                    <li class='nav-item'>
+                      <span
+                        class='nav-link  collapsed  d-flex justify-content-between align-items-center'
+                        data-toggle='collapse'
+                        data-target={`#submenu-${id}`}
+                      >
+                        <span>
+                          <span class='sidebar-icon'>
+                            <span class={`fas fa-${icon}`}></span>
+                          </span>
+                          {title}
+                        </span>
+                        <span class='link-arrow'>
+                          <span class='fas fa-chevron-right'></span>
+                        </span>
+                      </span>
+                      <div
+                        class='multi-level collapse '
+                        role='list'
+                        id={`submenu-${id}`}
+                        aria-expanded='false'
+                      >
+                        <ul class='flex-column nav'>
+                          {children.map(({ link, title, icon }) => {
+                            return (
+                              <li class='nav-item '>
+                                <a
+                                  class='nav-link'
+                                  href={link}
+                                >
+                                  <span class='sidebar-icon'>
+                                    <span class={`fas fa-${icon}`}></span>
+                                  </span>
+                                  <span>{title}</span>
+                                </a>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      </div>
+                    </li>
+                  )
+                }
+                return (
+                  <li class='nav-item'>
+                    <a href={link} class='nav-link'>
+                      <span class='sidebar-icon'>
+                        <span class={`fas fa-${icon}`}></span>
+                      </span>
+                      <span>{title}</span>
                     </a>
                   </li>
-                </ul>
-              </div>
-            </li>
+                )
+              }
+            )}
           </ul>
         </div>
       </nav>
