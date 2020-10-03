@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 
 const Wrapper = ({ children }) => (
@@ -38,7 +38,48 @@ const Wrapper = ({ children }) => (
   </>
 )
 
+const routes = [
+  {
+    title: 'Admin',
+    icon: 'chart-pie',
+    link: 'admin'
+  },
+  {
+    title: 'Cashier',
+    icon: 'hand-holding-usd',
+    link: 'cashier'
+  },
+  {
+    title: 'Client',
+    icon: 'user',
+    link: 'client'
+  },
+  {
+    title: 'Tables',
+    icon: 'table',
+    id: 'table',
+    children: [
+      {
+        link: '/tables',
+        title: 'Bootstrap Tables',
+        icon: 'cog'
+      }
+    ]
+  }
+]
+
+export const useNavbar = (initial = { links: [] }) => {
+  const [links, setLinks] = useState(initial)
+  // console.log(links)
+
+  return {
+    links,
+    setLinks
+  }
+}
+
 const NavBar = props => {
+  const { links = [] } = useNavbar(routes)
   return (
     <Wrapper>
       <nav
@@ -82,7 +123,7 @@ const NavBar = props => {
             </div>
           </div>
           <ul className='nav flex-column'>
-            {props.routes.map(
+            {links.map(
               ({ title, icon, link, children = undefined, id = undefined }) => {
                 if (children) {
                   return (
