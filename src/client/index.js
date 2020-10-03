@@ -1,42 +1,11 @@
 import React from 'react'
 
-import NavBar from '../components/navbar'
-
-const routes = [
-  {
-    title: 'Admin',
-    icon: 'chart-pie',
-    link: 'admin'
-  },
-  {
-    title: 'Cashier',
-    icon: 'hand-holding-usd',
-    link: 'cashier'
-  },
-  {
-    title: 'Client',
-    icon: 'user',
-    link: 'client'
-  },
-  {
-    title: 'Tables',
-    icon: 'table',
-    id: 'table',
-    children: [
-      {
-        link: '/tables',
-        title: 'Bootstrap Tables',
-        icon: 'cog'
-      }
-    ]
-  }
-]
+import {} from '../components/navbar'
 
 export default props => {
   return (
-    <>
-      <NavBar routes={routes} />
-      <main className='content'>
+    <main className='content'>
+      <div className='container'>
         <div class='row justify-content-md-center'>
           <div class='col-12 mb-4'>
             <div class='card bg-yellow-alt shadow-sm'>
@@ -180,7 +149,7 @@ export default props => {
             </div>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   )
 }
