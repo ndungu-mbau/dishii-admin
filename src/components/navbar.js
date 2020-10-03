@@ -70,7 +70,6 @@ const routes = [
 
 export const useNavbar = (initial = { links: [] }) => {
   const [links, setLinks] = useState(initial)
-  // console.log(links)
 
   return {
     links,
