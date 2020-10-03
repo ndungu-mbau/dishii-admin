@@ -10,11 +10,9 @@ const CardList = props => {
       </div>
       <div className={`card-body ${props.styles?.body}`}>
           <div className="row">
-              <div className={`col-md-${12/props.row_count}`}>
-                {display.map(row => {
-                  return (props.children(row))
-                })}
-              </div>
+            {display.map(row => {
+              return (props.children(row))
+            })}
           </div>
       </div>
       <div className={`card-footer ${props.styles?.footer}`}>
