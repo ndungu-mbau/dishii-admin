@@ -22,7 +22,7 @@ export const paginate = ({
     // return object with all pager properties required by the view
     return {
         start,
-        end,
+        end: end === start ? end + 1 : end,
     }
 }
 
