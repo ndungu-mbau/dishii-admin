@@ -17,7 +17,7 @@ const CardList = props => {
               </div>
           </div>
       </div>
-      <div className={`cardFooter ${props.styles?.footer}`}>
+      <div className={`card-footer ${props.styles?.footer}`}>
         <nav>
           <ul class={`pagination mb-0 ${props.styles?.pagination}`}>
             <li class={`page-item ${current === 1 ? "disabled" : ''}`}>
@@ -30,7 +30,7 @@ const CardList = props => {
                 <a className="page-link" onClick={() => set(page)}>{page}</a>
               </li>
             ))}
-            <li class={`page-item ${current === Math.ceil(props.data/props.pagination) ? "disabled" : ''}`}>
+            <li class={`page-item ${current === Math.ceil(props.data.length/props.pagination) ? "disabled" : ''}`}>
               <a className="page-link" onClick={next}>
                 <i class="fas fa-arrow-right"></i>
               </a>
