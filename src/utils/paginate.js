@@ -22,7 +22,7 @@ export const paginate = ({
     // return object with all pager properties required by the view
     return {
         start,
-        end: end === start ? end + 1 : end,
+        end
     }
 }
 
@@ -34,7 +34,7 @@ const usePagination = ({ items, size = 10 }) => {
     useEffect(() => {
         setTotalPages(Math.ceil(items.length/size))
         const { start, end } = paginate({ total: items.length, current: currentPage, size })
-        const display = items.slice(start, end)
+        const display = items.slice(start, end + 1)
 
         setDisplayItems(display)
     }, [currentPage, items, size])
