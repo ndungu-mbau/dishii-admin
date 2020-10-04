@@ -13,7 +13,7 @@ const Wrapper = ({ children }) => (
         <img
           className='navbar-brand-light'
           src='../../assets/img/brand/dark.svg'
-          alt='Volt logo'
+          alt='Dishii Kenya'
         />
       </a>
       <div className='d-flex align-items-center'>
@@ -38,47 +38,7 @@ const Wrapper = ({ children }) => (
   </>
 )
 
-const routes = [
-  {
-    title: 'Admin',
-    icon: 'chart-pie',
-    link: 'admin'
-  },
-  {
-    title: 'Cashier',
-    icon: 'hand-holding-usd',
-    link: 'cashier'
-  },
-  {
-    title: 'Client',
-    icon: 'user',
-    link: 'client'
-  },
-  {
-    title: 'Tables',
-    icon: 'table',
-    id: 'table',
-    children: [
-      {
-        link: '/tables',
-        title: 'Bootstrap Tables',
-        icon: 'cog'
-      }
-    ]
-  }
-]
-
-export const useNavbar = (initial = { links: [] }) => {
-  const [links, setLinks] = useState(initial)
-
-  return {
-    links,
-    setLinks
-  }
-}
-
 const NavBar = props => {
-  const { links = [] } = useNavbar(routes)
   return (
     <Wrapper>
       <nav
@@ -121,8 +81,14 @@ const NavBar = props => {
               ></a>
             </div>
           </div>
+          <div className='d-flex align-items-center justify-content-center'>
+            <div className='d-block'>
+              <h2 className='display-4'>{props.title}</h2>
+            </div>
+          </div>
+          <hr className="my-2"></hr>
           <ul className='nav flex-column'>
-            {links.map(
+            {props.links.map(
               ({ title, icon, link, children = undefined, id = undefined }) => {
                 if (children) {
                   return (
