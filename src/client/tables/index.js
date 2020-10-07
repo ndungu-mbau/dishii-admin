@@ -22,6 +22,7 @@ const List = props => {
     }})
     console.log(data.sessions.create.id)
     dispatch({ type: constants.SET_SESSION, payload: { session: data.sessions.create.id }})
+    window.sessionStorage.setItem("session", data.sessions.create.id)
     history.push("/client/menus")
   }
 
