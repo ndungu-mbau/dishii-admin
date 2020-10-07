@@ -12,18 +12,19 @@ import Navbar from "../../components/navbar"
 const List = props => {
   const { data, loading, error } = useQuery(LIST)
   const [createOrder] = useMutation(CREATE_ORDER)
-  const { state, dispatch } = useGlobalState()
+  const { dispatch } = useGlobalState()
   const location = useLocation()
 
   useEffect(async () => {
     const { data } = await createOrder({ variables: {
       order: {
-        session: state.session,
+        session: window.sessionStorage.getItem("session"),
         status: "NEW"
       }
     }})
     console.log(data)
     dispatch({ type: constants.SET_ORDER, payload: { order: data.orders.create.id }})
+    window.sessionStorage.setItem("order", data.orders.create.id)
   }, [])
 
   if (loading) return 'Loading...'
