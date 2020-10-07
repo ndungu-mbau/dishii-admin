@@ -1,21 +1,38 @@
-import React, { useState, useEffect } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import { Link, useLocation } from 'react-router-dom'
 
-import { LIST } from './queries'
+import useGlobalState, { constants } from "../../utils/state"
+
+import { LIST, CREATE_ORDER } from './queries'
 
 import CardList from '../../components/cardlist'
 import Navbar from "../../components/navbar"
 
 const List = props => {
   const { data, loading, error } = useQuery(LIST)
+  const [createOrder] = useMutation(CREATE_ORDER)
+  const { state, dispatch } = useGlobalState()
+  const location = useLocation()
+
+  useEffect(async () => {
+    const { data } = await createOrder({ variables: {
+      order: {
+        session: state.session,
+        status: "NEW"
+      }
+    }})
+    console.log(data)
+    dispatch({ type: constants.SET_ORDER, payload: { order: data.orders.create.id }})
+  }, [])
 
   if (loading) return 'Loading...'
   console.log({ data, loading, error })
 
+
   return (
     <>
-      <Navbar title="Menus" links={data.menus.map(menu => ({ title: menu.name, link: menu.id }))} />
+      <Navbar title="Menus" links={data.menus.map(menu => ({ title: menu.name, link: `menus/${menu.id}` }))} />
       <nav class='navbar navbar-top navbar-expand navbar-dashboard bg-success p-2 mb-3' style={{ borderRadius: 0 }}>
         <div class='container px-0'>
           <div
@@ -54,7 +71,7 @@ const List = props => {
                       <img src={row.image} class='card-img-top' alt='...' />
                       <div class='card-body'>
                         <h5 class='card-title'>{row.name}</h5>
-                        <Link to={row.id} class='btn btn-primary'>
+                        <Link to={`${location.pathname}/${row.id}`} class='btn btn-primary'>
                           View Menu
                         </Link>
                       </div>

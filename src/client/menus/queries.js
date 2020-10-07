@@ -11,3 +11,13 @@ export const LIST = gql`{
     }
   }
 }`
+
+export const CREATE_ORDER = gql`
+mutation($order: Iorder!){
+  orders{
+    create(order: $order){
+      id
+    }
+  }
+}
+`
