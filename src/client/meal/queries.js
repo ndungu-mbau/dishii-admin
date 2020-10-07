@@ -16,7 +16,7 @@ query($meal: Umeal!){
   }
 }`
 
-export const ADD = gql`
+export const ADD_MEAL = gql`
 mutation($instance: Iinstance!){
   instances{
     create(instance: $instance){
