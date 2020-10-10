@@ -50,8 +50,13 @@ const Meal = props => {
           closeModal: true
         }]
       }).then(val => {
-        if(val) history.push('/client/menus')
-        else history.push('/client/order')
+        if(val) history.push({
+          pathname: '/client/menus',
+          state: {
+            setOrder: false
+          }
+        })
+        else history.push(`/client/order/${window.sessionStorage.getItem("order")}`)
       })
     }
   }

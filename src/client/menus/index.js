@@ -15,16 +15,22 @@ const List = props => {
   const { dispatch } = useGlobalState()
   const location = useLocation()
 
-  useEffect(async () => {
-    const { data } = await createOrder({ variables: {
-      order: {
-        session: window.sessionStorage.getItem("session"),
-        status: "NEW"
-      }
-    }})
-    console.log(data)
-    dispatch({ type: constants.SET_ORDER, payload: { order: data.orders.create.id }})
-    window.sessionStorage.setItem("order", data.orders.create.id)
+  useEffect(() => {
+    const fn = async () => {
+      const { data } = await createOrder({ variables: {
+        order: {
+          session: window.sessionStorage.getItem("session"),
+          status: "NEW"
+        }
+      }})
+      console.log(data)
+      dispatch({ type: constants.SET_ORDER, payload: { order: data.orders.create.id }})
+      window.sessionStorage.setItem("order", data.orders.create.id)
+    }
+
+    if(location.state.setOrder === true){
+      fn()
+    }
   }, [])
 
   if (loading) return 'Loading...'

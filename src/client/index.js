@@ -6,6 +6,8 @@ import menus from './menus'
 import meals from './meals'
 import meal from './meal'
 import tables from "./tables"
+import order from "./order"
+import session from "./session"
 
 export default props => {
   return (
@@ -15,6 +17,8 @@ export default props => {
         <Route path='/client/menus' exact component={menus} />
         <Route path='/client/menus/:id' exact component={meals} />
         <Route path='/client/menus/:id/:meal' exact component={meal} />
+        <Route path='/client/order/:id' exact component={order} />
+        <Route path='/client/session/:id' exact component={session} />
       </Switch>
     </main>
   )
